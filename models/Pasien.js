@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const Users = sequelize.define(
-    "users",
+  const Pasien = sequelize.define(
+    "pasien",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -8,15 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
       },
-      name: {
-        type: DataTypes.STRING,
-      },
-      email: {
-        type: DataTypes.STRING,
-      },
-      password: {
-        type: DataTypes.STRING,
-      },
+      name: DataTypes.STRING,
+      alamat: DataTypes.STRING,
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -27,9 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "users",
+      tableName: "pasien",
     }
   );
-
-  return Users;
+  return Pasien;
 };
