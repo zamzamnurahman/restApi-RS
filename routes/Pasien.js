@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const validator = require("fastest-validator");
 const v = new validator();
-const { users } = require("../models");
+const { pasien } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
-    const User = await users.findAll();
-    res.json({ data: User });
+    const Pasien = await pasien.findAll();
+    res.json({ data: Pasien });
   } catch (error) {
     res.json({ message: error });
   }
