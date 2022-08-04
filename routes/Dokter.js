@@ -18,4 +18,28 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  const schema = {
+    name: "string",
+    alamat: "string",
+  };
+
+  const validate = v.validate(req.body, schema);
+  if (validate.length) {
+    res.status(400).json(validate);
+  }
+
+  try {
+    const data = await dokter.create(req.body);
+    res.status(201).json({
+      message: "created",
+      data: data,
+    });
+  } catch (error) {
+    res.status(400).json({
+      msgError: error.message,
+    });
+  }
+});
+
 module.exports = router;
