@@ -17,38 +17,18 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const user = await users.findByPk(id);
-    res.json({ data: user });
+    const Pasien = await pasien.findByPk(id);
+    res.json({ data: Pasien });
   } catch (error) {
     res.status(404).json({ message: "data not found" });
   }
 });
 
-// Login
-router.post("/login", async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  try {
-    const user = await users.findOne({
-      where: {
-        email: email,
-        password: password,
-      },
-    });
-    res.json({
-      data: user,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
+// POST
 router.post("/", async (req, res, next) => {
   const schema = {
     name: "string",
-    email: "string",
-    password: "string",
+    alamat: "string",
   };
 
   const validate = v.validate(req.body, schema);
@@ -57,8 +37,8 @@ router.post("/", async (req, res, next) => {
   }
 
   try {
-    const User = await users.create(req.body);
-    res.status(201).json({ data: User });
+    const Pasien = await pasien.create(req.body);
+    res.status(201).json({ data: Pasien });
   } catch (error) {
     console.log(error.message);
   }
