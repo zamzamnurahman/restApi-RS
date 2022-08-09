@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const validator = require("fastest-validator");
+const bcrypt = require("bcrypt");
+const salt = bcrypt.genSaltSync(10);
 const v = new validator();
 const { users } = require("../models");
 
